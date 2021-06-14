@@ -2,3 +2,22 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="user">
     <!-- 사용자 회원가입-->
+    <insert id="insertUser" statementType="PREPARED"
+            parameterType="Shoetudio.spring.mvc.vo.User" >
+        insert into userInfo (uname, userid, upasswd, zipcode, addr1, addr2, uemail, uphone)
+        value (#{uname}, #{userid}, #{upasswd}, #{zipcode}, #{addr1}, #{addr2}, #{uemail}, #{uphone})
+    </insert>
+
+    <!-- 아이디 중복 체크 -->
+    <select id="checkUserid" statementType="PREPARED"
+            parameterType="String" resultType="int" >
+        select count(userid) cnt from userInfo where userid = #{userid}
+    </select>
+
+    <!-- 로그인 확인 -->
+    <select id="checkUser" statementType="PREPARED"
+            parameterType="Shoetudio.spring.mvc.vo.User" resultType="int" >
+        select count(userid) cnt from userInfo where userid = #{userid} and upasswd = #{upasswd}
+    </select>
+
+</mapper>

@@ -15,16 +15,28 @@ public class ArtistServiceImpl implements ArtistService {
 
     @Override
     public String newArtist(Artist a) {
-        return null;
+        String result = "작가 정보 저장 실패";
+
+        int cnt = adao.insertArtist(a);
+        if (cnt > 0) result = "작가 정보 저장 성공";
+
+        return result;
     }
 
     @Override
     public String checkAuid(String aid) {
-        return null;
+        return adao.selectOneArtid(aid)+"";
     }
 
     @Override
     public boolean checkLogin(Artist a, HttpSession sess) {
-        return false;
+        boolean isLogin = false;
+
+        if (adao.selectLogin(a) > 0) {
+            sess.setAttribute("UID", a.getAuserid());
+            isLogin = true;
+        }
+
+        return isLogin;
     }
 }

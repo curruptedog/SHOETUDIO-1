@@ -13,16 +13,17 @@ public class UserDAOImpl implements UserDAO {
 
     @Override
     public int insertUser(User u) {
-        return 0;
+        return sqlSession.insert("user.insertUser", u);
     }
 
     @Override
     public int selectOneUserid(String uid) {
-        return 0;
+
+        return sqlSession.selectOne("user.checkUserid", uid);
     }
 
     @Override
     public int selectUser(User u) {
-        return 0;
+        return sqlSession.selectOne("user.checkUser", u);
     }
 }

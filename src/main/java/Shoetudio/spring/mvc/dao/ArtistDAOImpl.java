@@ -13,16 +13,18 @@ public class ArtistDAOImpl implements ArtistDAO {
 
     @Override
     public int insertArtist(Artist a) {
-        return 0;
+
+        return sqlSession.insert("artist.insertArtist", a);
     }
 
     @Override
     public int selectOneArtid(String auid) {
-        return 0;
+        return sqlSession.selectOne("artist.checkArtid", auid);
     }
 
     @Override
     public int selectLogin(Artist a) {
-        return 0;
+
+        return sqlSession.selectOne("artist.checkArtist", a);
     }
 }

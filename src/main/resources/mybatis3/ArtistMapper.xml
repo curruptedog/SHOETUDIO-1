@@ -2,3 +2,20 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="artist">
     <!-- 작가 회원 가입 sql문 작성 -->
+    <insert id="insertArtist" statementType="PREPARED"
+            parameterType="Shoetudio.spring.mvc.vo.Artist" >
+        insert into artistInfo (aname, auserid, apasswd, aemail, aphone)
+        values (#{aname}, #{auserid}, #{apasswd}, #{aemail}, #{aphone})
+    </insert>
+
+    <!-- 작가 아이디 중복 체크 -->
+    <select id="checkArtid" statementType="PREPARED" parameterType="String" resultType="int" >
+        select count(auserid) cnt from artistInfo where auserid = #{auserid}
+    </select>
+
+    <!-- 작가 로그인 확인 -->
+    <select id="checkArtist" statementType="PREPARED" parameterType="Shoetudio.spring.mvc.vo.Artist" resultType="int" >
+        select count(auserid) cnt from artistInfo where auserid = #{auserid} and apasswd = #{apasswd}
+    </select>
+
+</mapper>
