@@ -16,7 +16,7 @@ public class CommunityDAOImpl implements CommunityDAO {
 
     @Override
     public int insertCommunity(Community cm) {
-        return 0;
+        return sqlSession.insert("community.insertCommunity", cm);
     }
 
     @Override
@@ -26,36 +26,36 @@ public class CommunityDAOImpl implements CommunityDAO {
 
     @Override
     public int deleteCommunity(String cno) {
-        return 0;
+        return sqlSession.delete("community.deleteCommunity", cno);
     }
 
     @Override
     public List<Community> selectCommunity(int cnum) {
-        return null;
+        return sqlSession.selectList("community.selectCommunity", cnum);
     }
 
     @Override
     public List<Community> findSelectCommunity(Map<String, Object> param) {
-        return null;
+        return sqlSession.selectList("community.findSelect", param);
     }
 
     @Override
     public Community selectOneCommunity(String cno) {
-        return null;
+        return sqlSession.selectOne("community.selectOne", cno);
     }
 
     @Override
     public int selectCountCommunity() {
-        return 0;
+        return sqlSession.selectOne("community.countCommunity");
     }
 
     @Override
     public int selectCountCommunity(Map<String, Object> param) {
-        return 0;
+        return sqlSession.selectOne("community.findSelectCount", param);
     }
 
     @Override
     public int viewCountCommunity(String cno) {
-        return 0;
+        return sqlSession.update("community.viewsCommunity", cno);
     }
 }

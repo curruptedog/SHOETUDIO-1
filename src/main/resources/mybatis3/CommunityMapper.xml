@@ -2,3 +2,39 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="community">
     <!-- 사용자 커스텀 게시판 -->
+    <!-- 글 목록 -->
+    <select id="selectCommunity" statementType="PREPARED"
+            parameterType="int" resultType="Shoetudio.spring.mvc.vo.Community" >
+        select cno, title, userid, regdate, views, thumbup from community
+        order by cno desc limit #{cnum}, 20
+    </select>
+
+    <!-- 글 갯수 -->
+    <select id="countCommunity" statementType="PREPARED" resultType="int" >
+        select count(cno) cnt from community
+    </select>
+
+    <!-- 글 작성 -->
+    <insert id="insertCommunity" statementType="PREPARED"
+            parameterType="Shoetudio.spring.mvc.vo.Community" >
+        insert into community (title, userid, contents)
+        values (#{title}, #{userid}, #{contents})
+    </insert>
+
+    <!-- 글 조회 -->
+    <select id="selectOne" statementType="PREPARED"
+            parameterType="String" resultType="Shoetudio.spring.mvc.vo.Community" >
+        select * from community where cno = #{cno}
+    </select>
+
+    <!-- 조회수 -->
+    <update id="viewsCommunity" statementType="PREPARED" parameterType="String" >
+        update community set views = views + 1 where cno = #{cno}
+    </update>
+
+    <!-- 글 삭제 -->
+    <delete id="deleteCommunity" statementType="PREPARED" parameterType="String" >
+        delete from community where cno = #{cno}
+    </delete>
+
+</mapper>

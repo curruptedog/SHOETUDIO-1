@@ -1,12 +1,13 @@
 package Shoetudio.spring.mvc.service;
 
 import Shoetudio.spring.mvc.vo.Community;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
 public interface CommunityService {
 
-    boolean newCommunity(Community c);
+    boolean newCommunity(Community c, MultipartFile[] img);
     boolean modifyCommunity(Community c);
     boolean removeCommunity(String cno);
 

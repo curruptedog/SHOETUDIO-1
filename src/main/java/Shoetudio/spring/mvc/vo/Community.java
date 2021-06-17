@@ -10,6 +10,9 @@ public class Community {
     protected String views;
     protected String thumbup;
     protected String contents;
+    protected String fnames;
+    protected String fsizes;
+    protected String uuid;
 
     public String getCno() {
         return cno;
@@ -66,4 +69,29 @@ public class Community {
     public void setContents(String contents) {
         this.contents = contents;
     }
+
+    public String getFnames() {
+        return fnames;
+    }
+
+    public void setFnames(String fnames) {
+        this.fnames = fnames;
+    }
+
+    public String getFsizes() {
+        return fsizes;
+    }
+
+    public void setFsizes(String fsizes) {
+        this.fsizes = fsizes;
+    }
+
+    public String getUuid() {
+        return uuid;
+    }
+
+    public void setUuid(String uuid) {
+        this.uuid = uuid;
+    }
+
 }
